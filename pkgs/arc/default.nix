@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, fetchurl, undmg }:
+{ stdenvNoCC, fetchurl, undmg }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "arc";
@@ -22,7 +22,6 @@ stdenvNoCC.mkDerivation rec {
     description = "Arc browser by The Browser Company";
     homepage = "https://arc.net";
     platforms = [ "aarch64-darwin" "x86_64-darwin" ];
-    license = lib.licenses.unfree;
     mainProgram = "Arc";
   };
 }
