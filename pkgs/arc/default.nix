@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     mkdir -p "$out/Applications"
-    ditto Arc.app "$out/Applications/Arc.app"
+    /usr/bin/ditto Arc.app "$out/Applications/Arc.app"
   '';
 
   meta = {
