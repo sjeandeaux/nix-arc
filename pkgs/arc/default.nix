@@ -6,7 +6,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://releases.arc.net/release/Arc-${version}.dmg";
-    hash = "sha256-1c5fc6q6rn46wsjv9dlms794x2paqgs36kkvi478rgpd4gk2z7ip=";
+    hash = "sha256-N54v5iPtvowOiXtOM/TD6opO0tGVtrSl5obYbLBhrrA=";
   };
 
   nativeBuildInputs = [ undmg ];
