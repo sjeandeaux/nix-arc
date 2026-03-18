@@ -1,4 +1,4 @@
-{ stdenvNoCC, fetchurl, undmg }:
+{ stdenvNoCC, fetchurl }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "arc";
@@ -9,13 +9,21 @@ stdenvNoCC.mkDerivation rec {
     hash = "sha256-N54v5iPtvowOiXtOM/TD6opO0tGVtrSl5obYbLBhrrA=";
   };
 
-  nativeBuildInputs = [ undmg ];
-
   sourceRoot = ".";
 
+  dontFixup = true;
+
+  unpackPhase = ''
+    mountpoint="$TMPDIR/arc-dmg"
+    mkdir -p "$mountpoint"
+    /usr/bin/hdiutil attach "$src" -mountpoint "$mountpoint" -nobrowse -quiet -readonly
+  '';
+
   installPhase = ''
+    mountpoint="$TMPDIR/arc-dmg"
     mkdir -p "$out/Applications"
-    /usr/bin/ditto Arc.app "$out/Applications/Arc.app"
+    /usr/bin/ditto "$mountpoint/Arc.app" "$out/Applications/Arc.app"
+    /usr/bin/hdiutil detach "$mountpoint" -quiet
   '';
 
   meta = {
